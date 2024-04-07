@@ -31,7 +31,7 @@ public class RedisApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		//Populating embedded database here
-		LOG.info("Saving Productos. Current book count is {}.", productoRepository.count());
+		LOG.info("Guardando Productos. Productos al momento {}.", productoRepository.count());
 		Producto p1 = new Producto(1, "Nombre 1");
 		Producto p2 = new Producto(2, "Nombre 2");
 		Producto p3 = new Producto(3, "Nombre 3");
@@ -41,7 +41,7 @@ public class RedisApplication implements CommandLineRunner {
 		productoRepository.save(p2);
 		productoRepository.save(p3);
 		productoRepository.save(p4);
-		LOG.info("Done saving Productos. Data: {}.", productoRepository.findAll());
+		LOG.info("Productos guardados. Datos: {}.", productoRepository.findAll());
 
 	}
 }

@@ -25,7 +25,7 @@ public class ProductoController {
     @Cacheable(value = "producto", key = "#productoId")
     @RequestMapping(value = "/get/{productoId}", method = RequestMethod.GET)
     public Producto getProducto(@PathVariable String productoId) {
-        LOG.info("Getting Producto with ID {}.", productoId);
+        LOG.info("Obteniendo Producto con Id {}.", productoId);
         int i = Integer.parseInt(productoId);
         return productoRepository.findById(i).orElse(null);
     }
@@ -34,13 +34,14 @@ public class ProductoController {
     @PutMapping("/add")
     public Producto addProducto(@RequestBody Producto producto) {
         productoRepository.save(producto);
+        LOG.info("Producto agregado: {}", producto);
         return producto;
     }
 
     @CacheEvict(value = "producto", allEntries = true)
     @DeleteMapping("/delete/{productoId}")
     public void deleteByID(@PathVariable Integer productoId) {
-        LOG.info("deleting Producto with id {}", productoId);
+        LOG.info("Eliminando producto con Id {}", productoId);
         Optional<Producto> pr = productoRepository.findById(productoId);
         if (!pr.isEmpty()) {
             Producto producto = pr.get();
